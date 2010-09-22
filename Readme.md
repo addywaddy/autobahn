@@ -1,13 +1,13 @@
 
-# YourLib
+# Autobahn
 
-Description
+A set of static and dynamic modules for routing requests with node-js.
 
 ## License 
 
 (The MIT License)
 
-Copyright (c) 2009 Your Name &lt;Your Email&gt;
+Copyright (c) 2009 Adam Groves &lt;adam.groves(at)gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
