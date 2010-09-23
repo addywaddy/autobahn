@@ -1,2 +1,3 @@
  - routes take callback for determining whether action allowed
  - return match data from routes
+ - "/" checks for index.html in public

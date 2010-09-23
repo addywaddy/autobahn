@@ -1,7 +1,23 @@
 
-# Autobahn
 
-A set of static and dynamic modules for routing requests with node-js.
+    █ █ █ █ █  █       █  █ █ █ █ █  █ █ █ █ █  █ █ █ █ █  █ █ █ █ █  █       █  █       █
+    █       █  █       █      █      █       █  █       █  █       █  █       █  █ █     █
+    █       █  █       █      █      █       █  █       █  █       █  █       █  █   █   █
+    █ █ █ █ █  █       █      █      █       █  █ █ █ █    █ █ █ █ █  █ █ █ █ █  █     █ █
+    █       █  █       █      █      █       █  █       █  █       █  █       █  █       █
+    █       █  █       █      █      █       █  █       █  █       █  █       █  █       █
+    █       █  █ █ █ █ █      █      █ █ █ █ █  █ █ █ █ █  █       █  █       █  █       █
+
+
+Static and dynamic modules for routing requests with node-js.
+
+Check out the examples
+
+    $ node examples/simple/app.js
+
+and point your browser at
+
+    http:://localhost:4000
 
 ## License 
 
