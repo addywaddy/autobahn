@@ -36,6 +36,20 @@ http.createServer(function (request, response) {
       }, 1000)
     })
 
+    r.add(/\/chunky$/,
+      function(req, res) {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+      },
+      function(req, res) {
+        res.write('Chunky\n');
+      },
+      function(req, res) {
+        setTimeout(function() {
+          res.end('Bacon\n');
+        }, 1000)
+      }
+    )
+
   })(request, response)
 
 }).listen(4000, "127.0.0.1");
