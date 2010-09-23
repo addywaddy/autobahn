@@ -2,4 +2,4 @@
 
 body {font-size: 13pt; background: #166fc1;}
 
-pre { text-align: center; color: #fff; font-size: 100%; margin-top: 10em; text-shadow: #223663 1px 1px 10px;}
+pre { text-align: center; color: #fff; font-size: 100%; margin-top: 10em; text-shadow: #000 20px 10px 60px; font-family: monospace;}
