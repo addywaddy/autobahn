@@ -32,8 +32,9 @@ autobahn(function(r) {
     }, 1000)
   })
 
-  r.add(/\/awaken$/, function() {
-    render.text({body: "Line 1"}).text({body: "Line 2"})
+  r.add(/\/match\/(\w+)$/, function(req, res, match) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(match[1] + '\n');
   })
 
   r.add(/\/chunky$/,
