@@ -1,54 +1,49 @@
 autobahn  = require('./../../lib/autobahn')
 
-autobahn(function(r) {
+autobahn(function() {
 
-  r.add(/^\/$/, function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end("" +
-
-      "<h1>Congratulations - you're on the Autobahn!</h1>" +
-      "<p>" +
-      "  Here are some links:" +
-      "</p>" +
-      "<ul>" +
-      "  <li><a href='/simple'>Simple route</a></li>" +
-      "  <li><a href='/awaken'>The obligatory delayed page</a></li>" +
-      "  <li><a href='/autobahn.html'>A static page</a></li>" +
-      "  <li><a href='/pics/me.jpg'>An image</a></li>" +
-      "</ul>" +
-
-    "");
-  })
-
-  r.add(/\/simple$/, function(req, res) {
+  this.get("/drawings", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Simple Page\n');
+    res.end('GET Drawings\n');
   })
-
-  r.add(/\/awaken$/, function(req, res) {
-    setTimeout(function() {
+  .post(function(req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('POST Drawings\n');
+  })
+    .get("/:drawing_id", function(req, res, params) {
       res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('Awoken after 1 second\n');
-    }, 1000)
-  })
-
-  r.add(/\/match\/(\w+)$/, function(req, res, match) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(match[1] + '\n');
-  })
-
-  r.add(/\/chunky$/,
-    function(req, res) {
+      res.end('GET Drawing ' + params.drawing_id + '\n');
+    })
+    .put(function(req, res, params) {
       res.writeHead(200, {'Content-Type': 'text/plain'});
-    },
-    function(req, res) {
-      res.write('Chunky\n');
-    },
-    function(req, res) {
-      setTimeout(function() {
-        res.end('Bacon\n');
-      }, 1000)
-    }
-  )
-
+      res.end('PUT Drawing ' + params.drawing_id + '\n');
+    })
+    .del(function(req, res, params) {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end('DELETE Drawing ' + params.drawing_id + '\n');
+    })
+      .get("/elements", function(req, res, params) {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.end('GET Drawing ' + params.drawing_id + ' Elements\n');
+      })
+      .post(function(req, res, params) {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.end('POST Drawing ' + params.drawing_id + ' Elements\n');
+      })
+        .get("/:element_id", function(req, res, params) {
+          res.writeHead(200, {'Content-Type': 'text/plain'});
+          res.end('GET Drawing ' + params.drawing_id + ' Element ' + params.element_id + '\n');
+        })
+        .put(function(req, res, params) {
+          res.writeHead(200, {'Content-Type': 'text/plain'});
+          res.end('PUT Drawing ' + params.drawing_id + ' Element ' + params.element_id + '\n');
+        })
+        .del(function(req, res, params) {
+          res.writeHead(200, {'Content-Type': 'text/plain'});
+          res.end('DELETE Drawing ' + params.drawing_id + ' Element ' + params.element_id + '\n');
+        })
+  this.get("/foo/:bar/:baz", function(req, res, params) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Bar is ' + params.bar + ', Baz is ' + params.baz + '\n');
+  })
 })({ port: 4001 })
