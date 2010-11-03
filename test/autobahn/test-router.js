@@ -5,17 +5,8 @@ var Router = require("autobahn/router")(function() {
   this.get("/foos", function() {
     return "All the foos"
   })
-  .post(function(req, resp, params) {
-    return "New foo created"
-  })
     .get("/:foo_id", function(req, resp, params) {
       return "Foo No.  " + params.foo_id
-    })
-    .put(function(req, resp, params) {
-      return "Foo No.  " + params.foo_id + " modified"
-    })
-    .del(function(req, resp, params) {
-      return "Foo No.  " + params.foo_id + " deleted"
     })
       .get("/bars", function(req, resp, params) {
         return "All the bars for Foo No. " + params.foo_id
@@ -28,9 +19,6 @@ var Router = require("autobahn/router")(function() {
         })
         .put(function(req, resp, params) {
           return "Bar No. " + params.bar_id + " belonging to Foo No. " + params.foo_id + " modified"
-        })
-        .del(function(req, resp, params) {
-          return "Bar No. " + params.bar_id + " belonging to Foo No. " + params.foo_id + " deleted"
         })
 
   this.get("/fuzz", function() {
@@ -51,6 +39,9 @@ test("Should return params object for routes", function() {
   assert.equal(Router.route({url: "/foos/1/bars/2", method: "PUT"}), "Bar No. 2 belonging to Foo No. 1 modified")
 });
 
+test("Should chain routes", function() {
+  assert.equal(Router.route({url: "/foos/1/bars/", method: "POST"}), "New bar created for Foo No. 1")
+});
 test("Should return 404 if no match", function() {
   assert.equal(Router.route({url: "/fuzz/1/bars/2", method: "GET"}), "NOT FOUND")
 });
