@@ -24,7 +24,17 @@ var Router = require("autobahn/router")(function() {
   this.get("/fuzz", function() {
     return "Call the police"
   })
-});
+})
+
+autobahn = {}
+
+autobahn.not_found = function(req, res) {
+  return "NOT FOUND"
+}
+
+autobahn.forbidden = function(req, res) {
+  return "FORBIDDEN"
+}
 
 test("Should match top level routes", function() {
   assert.equal(Router.route({url: "/foos", method: "GET"}), "All the foos")
@@ -47,5 +57,5 @@ test("Should return 404 if no match", function() {
 });
 
 test("Should return 406 if not permitted", function() {
-  assert.equal(Router.route({url: "/fuzz/1/bars/2", method: "PUT"}), "NOT PERMITTED")
+  assert.equal(Router.route({url: "/foos/1/bars/2", method: "POST"}), "FORBIDDEN")
 });
