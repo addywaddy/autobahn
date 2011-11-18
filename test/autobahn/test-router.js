@@ -6,7 +6,11 @@ var Router = require("autobahn/router")(function() {
     return "All the foos"
   })
     .get("/:foo_id", function(req, resp, params) {
-      return "Foo No.  " + params.foo_id
+      var res = "Foo No.  " + params.foo_id
+      if (params.bar) {
+       res += ", Bar is " + params.bar
+      }
+      return res
     })
       .get("/bars", function(req, resp, params) {
         return "All the bars for Foo No. " + params.foo_id
