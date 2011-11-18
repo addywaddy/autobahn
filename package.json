@@ -1,0 +1,14 @@
+{
+  "name"          : "autobahn",
+  "description"   : "Static and dynamic modules for routing requests",
+  "url"           : "https://github.com/addywaddy/autobahn",
+  "keywords"      : ["router"],
+  "author"        : "Adam Groves <adam.groves@gmail.com>",
+  "contributors"  : [],
+  "dependencies"  : { "underscore": ">=1.1.6" },
+  "version"       : "0.1.2",
+  "bin"           : { },
+  "main"          : "./lib/autobahn",
+  "directories"   : { "test": "./test" },
+  "engines"       : { "node": ">=0.4.0" }
+}
