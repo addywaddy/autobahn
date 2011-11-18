@@ -45,6 +45,10 @@ test("Should work with trailing slashes", function() {
   assert.equal(Router.route({url: "/foos/", method: "GET"}), "All the foos")
 });
 
+test("Should work with query params", function() {
+  assert.equal(Router.route({url: "/foos/1?bar=200&buzz=12", method: "GET"}), "Foo No.  1, Bar is 200")
+});
+
 test("Should return params object for routes", function() {
   assert.equal(Router.route({url: "/foos/1/bars/2", method: "PUT"}), "Bar No. 2 belonging to Foo No. 1 modified")
 });

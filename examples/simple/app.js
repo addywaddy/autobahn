@@ -1,6 +1,8 @@
 autobahn  = require('./../../lib/autobahn')
 
-autobahn(function() {
+var server = autobahn(function() {
+  var foo = "FOO!"
+
 
   this.get("/drawings", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -46,4 +48,4 @@ autobahn(function() {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Bar is ' + params.bar + ', Baz is ' + params.baz + '\n');
   })
-})({ port: 4001 })
+}).listen(4001)
