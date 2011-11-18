@@ -3,6 +3,10 @@ autobahn  = require('./../../lib/autobahn')
 var server = autobahn(function() {
   var foo = "FOO!"
 
+  this.before("/", function(req, res, params) {
+      foo += " Bar!"
+    console.log(foo)
+  });
 
   this.get("/drawings", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -15,6 +19,11 @@ var server = autobahn(function() {
     .get("/:drawing_id", function(req, res, params) {
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end('GET Drawing ' + params.drawing_id + '\n');
+    })
+    .before(function(req, res, params) {
+      console.log("Drawing no: ", params.drawing_id)
+      foo += " Buzz!"
+      console.log(foo)
     })
     .put(function(req, res, params) {
       res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -43,6 +52,9 @@ var server = autobahn(function() {
         .del(function(req, res, params) {
           res.writeHead(200, {'Content-Type': 'text/plain'});
           res.end('DELETE Drawing ' + params.drawing_id + ' Element ' + params.element_id + '\n');
+        })
+        .before(function(req, res, params) {
+          console.log("Element no: ", params.element_id)
         })
   this.get("/foo/:bar/:baz", function(req, res, params) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
